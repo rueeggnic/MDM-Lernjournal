@@ -19,7 +19,7 @@ Der User kann den Text anpassen und neu senden um den Text wieder zu drehen. Das
 
 #### Ansicht im Web-UI:
 
-lernjournal1-python/images/Ansicht Webui.png
+![Ansicht WebUI](./images/Ansicht%20Webui.png)
 
 #### Code der Application:
 
