@@ -23,27 +23,7 @@ Der User kann den Text anpassen und neu senden um den Text wieder zu drehen. Das
 
 #### Code der Application:
 
-from flask import Flask, render_template, request
-from textblob import TextBlob
-
-def get_sentiment(text):
-    blob = TextBlob(text)
-    return blob.sentiment.polarity
-
-app = Flask(__name__)
-
-@app.route("/", methods=["GET", "POST"])
-def index():
-    result = ""
-    sentiment = None
-    if request.method == "POST":
-        text = request.form["text"]
-        result = text[::-1]  # Text umdrehen als Beispiel
-        sentiment = get_sentiment(text)
-    return render_template("index.html", result=result, sentiment=sentiment)
-
-if __name__ == "__main__":
-    app.run()
+![WebUI](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal1-python/images/Code_der_Applikation.png)
 
 ## Dependency Management
 
@@ -51,8 +31,7 @@ Für das Dependency Management haben wir pip-tools verwendet. In der Datei requi
 
 ### requirements.in Inhalt:
 
-flask
-textblob
+![WebUI](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal1-python/images/requirementsin.png)
 
 ### requirements.txt Inhalt (Teil-Auszug):
 
