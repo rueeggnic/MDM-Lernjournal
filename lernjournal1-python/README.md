@@ -19,7 +19,7 @@ Der User kann den Text anpassen und neu senden um den Text wieder zu drehen. Das
 
 #### Ansicht im Web-UI:
 
-![Ansicht WebUI](./images/Ansicht%20Webui.png)
+![Screenshot WebUI](./images/Ansicht_WebUI.png)
 
 #### Code der Application:
 
