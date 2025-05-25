@@ -6,9 +6,9 @@
 | -------- | ------- |
 | Variante | Eigenes Projekt |
 | Datenherkunft | Format: csv und JSON, vorbereitete Datensätze die ich beziehen konnte |
-| Datenherkunft | [URL](https://www.energiedashboard.admin.ch/strom/produktion) |
+| Datenherkunft | https://www.energiedashboard.admin.ch/strom/produktion |
 | ML-Algorithmus | nur begrenzt ML, da Datensatz sehr speziell war |
-| Repo URL | [URL](https://github.com/rueeggnic/mdmproject1) |
+| Repo URL | https://github.com/rueeggnic/mdmproject1 |
 
 ## Dokumentation
 
