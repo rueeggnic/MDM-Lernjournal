@@ -17,6 +17,8 @@
 
 ### Daten
 
+Die Daten sind von einem vordefinierten Datensatz von Kaggle. Da gibt es die Recyclingbilder in einer riesigen Datenbank mit extrem vielen Unterordnern. Da ich für das Projekt 2 weniger Datensätze wollte da sonst die Trainingszeiten viel zu hoch sind, habe ich die Datensätze auf 6 Klassen reduziert und für jede Klasse 250 Bilder bereit gestellt. Später habe ich dann, zwei Klassen noch zusammengefügt. Ich hatte eine Petflachen Wasser und eine Gruppe Petflaschen Soda (also Süssgetränke). Die Klassen waren im Verhältnis zu den anderen zu nahe aneinander, also habe ich mich entschieden eine Klasse zu streichen. Wobei ich habe diese Klassen dann in PET zusammengefügt und jeweils mit 125 Bilder von Pet Wasser und mit 125 Bilder von Pet Soda ergänzt, sodass beide Klassen inhaltlich als eine Klasse berücksichtigt werden.
+
 ![Datensatz](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Datensatz.png)
 
 ### Training
@@ -25,10 +27,16 @@
 
 ### Inference / Serving
 
+Die trainierten Daten habe ich über einen Localhost getestet. Danach habe ich die Daten mittles Dockerimage auf Docker gebracht. Auch da konnte ich die Applikation über den Localhost Port 8080 testen. Danach habe ich die lokalen Dateien von Docker Desktop auf Dockerhub gepusht.
+
 ![dockerhub](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/dockerhub.png)
+
+Um das alles auf Azure zu deployen, habe ich im Azure bereits alles eingereichtet, d.h. Resourcengruppe erstellt und über die Einrichtung WebApp aufgeschaltet.
 
 ![Deployment](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Azure_deployment.png)
 
 ### Deployment
+
+Das Deployment ist über Azure erfolgt. Die Daten habe ich dann bereits über eine Containerisierung auf Docker Hub gepusht, sodass ich das dann auf Azure bringen konnte.
 
 ![WebApp](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/WebApp.png)
