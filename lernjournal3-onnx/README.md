@@ -80,14 +80,6 @@ Index.html
 </select>
 </code></pre>
 
-HTML Code:
-<label for="model">Select Model:</label>
-<select name="model">
-  <option value="fp32">EfficientNet-Lite4 (FP32)</option>
-  <option value="qdq">EfficientNet-Lite4 QDQ</option>
-  <option value="int8">EfficientNet-Lite4 INT8</option>
-</select>
-
 app.py:
 <pre><code>
 def analyze():
