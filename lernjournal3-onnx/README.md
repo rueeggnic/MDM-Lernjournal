@@ -31,4 +31,23 @@ Im Abschnitt blocks_0 beginnt die eigentliche vertiefte Struktur des Modells. In
 
 ## Dokumentation onnx-image-classification
 
-* [ ] TODO
+Im Rahmen der Aufgabe wurde das bereitgestellte ONNX-Modell efficientnet-lite4-11.onnx in eine lokale Flask-Webapplikation eingebunden. Die Anwendung wurde über ein vorhandenes GitHub-Repository (Fork) heruntergeladen, lokal geöffnet und erfolgreich mit Python gestartet. Nach dem Starten der App über python app.py lief das System unter http://127.0.0.1:5000 im Browser.
+
+Über die Weboberfläche konnte ein Testbild (train.jpg) hochgeladen werden. Nach dem Absenden des Bildes wurde es serverseitig mit onnxruntime geladen und klassifiziert. Das Modell lieferte dabei eine Top-1-Vorhersage „streetcar, tram, tramcar, trolley, trolley car“ mit einer Confidence von ca. 0.35. Weitere Vorhersagen mit absteigender Wahrscheinlichkeit wurden ebenfalls angezeigt (z. B. „electric locomotive“ mit ~0.15).
+
+Das Ergebnis zeigt, dass das Modell trotz niedriger Top-1-Confidence (unter 50 %) inhaltlich korrekt zwischen ähnlichen Klassen unterscheiden konnte – alle Prediction-Ergebnisse bezogen sich nachvollziehbar auf das dargestellte Schienenfahrzeug.
+
+Die Einbindung des ONNX-Modells in eine Flask-Oberfläche verdeutlicht, wie maschinelles Lernen mit vortrainierten Modellen einfach lokal getestet werden kann. Die Nutzung von onnxruntime erlaubt dabei eine schnelle Inferenz ohne Abhängigkeit zu externen GPU-Diensten oder Frameworks wie TensorFlow oder PyTorch.
+
+
+
+
+
+Zur Evaluierung der Klassifikationsleistung des EfficientNet-Lite4-Modells wurden drei verschiedene Bilder getestet: ein Zug (train.jpg), ein Auto (car.jpg) und ein Landschaftsbild (matterhorn.jpg). Die Klassifikation erfolgte über das lokal gestartete Flask-Webinterface mit dem ONNX-Modell efficientnet-lite4-11.onnx.
+
+Das beste Ergebnis lieferte das Bild train.jpg, das mit hoher Wahrscheinlichkeit der Klasse
+„streetcar, tram, tramcar, trolley, trolley car“ zugeordnet wurde. Die Top-1-Prediction lag hier bei über 0.34, gefolgt von sinnvollen Alternativen wie „electric locomotive“.
+
+Das Bild car.jpg wurde mit deutlich geringerer Sicherheit (Top-1: ~0.26) der Klasse „station wagon“ zugeordnet. Auch hier sind die Alternativklassen (z. B. „car wheel“, „sports car“) plausibel, allerdings zeigt sich eine breitere Streuung der Wahrscheinlichkeiten, was auf Unsicherheit im Modell schließen lässt.
+
+Das Landschaftsbild matterhorn.jpg wurde am schlechtesten erkannt. Die Top-1-Klasse war „lakeside, lakeshore“ mit nur ~0.013, dicht gefolgt von „valley“ und „cliff“. Dies deutet darauf hin, dass das Modell für natürliche Szenen ohne dominante Objekte weniger geeignet ist – was nachvollziehbar ist, da EfficientNet ursprünglich auf Objekterkennung in der ImageNet-Domäne trainiert wurde.
