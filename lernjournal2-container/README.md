@@ -69,4 +69,6 @@ https://rueeg-backend-app2.azurewebsites.net
 
 ![WebApp](images/webapp_azure.png)
 
+Wie erwähnt, hat eigentlich das Deployment komplett funktioniert, jedoch zeigte Azure einen Fehler an. Ich bin mir nicht sicher, ob es daran liegt, dass ich den falschen Plan genommen habe, weil da hatte ich ziemlich Probleme welche kostenfrei und welche nicht kostenfrei waren.
+
 ![WebApp](images/azure_error.png)
