@@ -49,7 +49,7 @@ Docker-Image gepusht auf Docker Hub:
 docker push ruegenic/react-backend
 
 Ressourcengruppe erstellt:
-'az group create --name rueeggnic-aci --location switzerlandnorth'
+<pre lang="md"> ```az group create --name rueeggnic-aci --location switzerlandnorth
 
 App Service Plan (Linux, B1) erstellt:
 az appservice plan create --name rueeg-plan --resource-group rueeggnic-aci --sku B1 --is-linux
@@ -62,6 +62,7 @@ az webapp config appsettings set --name rueeg-backend-app2 --resource-group ruee
 
 Container-Image gesetzt:
 az webapp config container set --name rueeg-backend-app2 --resource-group rueeggnic-aci --docker-custom-image-name ruegenic/react-backend:latest --docker-registry-server-url https://index.docker.io
+   ``` </pre>
 
 Anwendung aufrufbar unter (sofern erfolgreich gestartet):
 https://rueeg-backend-app2.azurewebsites.net
