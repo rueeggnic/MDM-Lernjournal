@@ -68,3 +68,5 @@ Anwendung aufrufbar unter (sofern erfolgreich gestartet):
 https://rueeg-backend-app2.azurewebsites.net
 
 ![WebApp](images/webapp_azure.png)
+
+![WebApp](images/azure_error.png)
