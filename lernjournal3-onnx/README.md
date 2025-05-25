@@ -4,8 +4,8 @@
 
 | | Bitte ausfüllen |
 | -------- | ------- |
-| ONNX Modell für Analyse (Netron) | URL |
-| onnx-image-classification Fork (EfficientNet-Lite) | URL |
+| ONNX Modell für Analyse (Netron) | https://github.com/onnx/models/blob/main/validated/vision/classification/efficientnet-lite4/model/efficientnet-lite4-11-qdq.onnx |
+| onnx-image-classification Fork (EfficientNet-Lite) | https://github.com/rueeggnic/onnx-image-classification |
 
 ## Dokumentation ONNX Analyse
 
