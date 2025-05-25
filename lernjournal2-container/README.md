@@ -49,7 +49,7 @@ Docker-Image gepusht auf Docker Hub:
 docker push ruegenic/react-backend
 
 Ressourcengruppe erstellt:
-az group create --name rueeggnic-aci --location switzerlandnorth
+'az group create --name rueeggnic-aci --location switzerlandnorth'
 
 App Service Plan (Linux, B1) erstellt:
 az appservice plan create --name rueeg-plan --resource-group rueeggnic-aci --sku B1 --is-linux
