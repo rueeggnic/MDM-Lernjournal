@@ -21,13 +21,19 @@ Ein weiterer zentraler Layer im Modell ist DequantizeLinear, der in der analysie
 
 Durch die Analyse dieser Layer konnte ein gutes Verständnis für die Struktur und die Optimierungen von quantisierten ONNX-Modellen gewonnen werden. Die Visualisierung in Netron hilft dabei, komplexe Abläufe wie das Zusammenspiel von Quantisierung, Dequantisierung und Faltungsschritten nachvollziehbar darzustellen.
 
+![Layer1](images/Analyse_netron.png)
+
 ## Layer 2
 
 In einem frühen Abschnitt des EfficientNet-Lite4-Modells lässt sich ein typisches Verarbeitungsschema quantisierter Netze erkennen: Zuerst werden die Eingabedaten, Filtergewichte und Bias-Werte mit DequantizeLinear in Gleitkommazahlen konvertiert. Diese Umrechnung ist nötig, da die darauffolgende Faltung (Conv) mit Float-Werten durchgeführt wird. Der Conv-Layer extrahiert dabei mit mehreren Filtern erste Bildmerkmale. Im Anschluss werden die Ergebnisse durch QuantizeLinear erneut in INT8-Werte umgerechnet, um die Effizienz des Modells beizubehalten. Dieses Muster ist typisch für quantisierte Modelle und zeigt, wie ONNX eine Balance zwischen Genauigkeit und Performance ermöglicht.
 
+![Layer2](images/Quantize_Linear.png)
+
 ## vertiefte Struktur
 
 Im Abschnitt blocks_0 beginnt die eigentliche vertiefte Struktur des Modells. Innerhalb dieses Blocks werden mehrere Operationen kombiniert: Zunächst erfolgt eine DequantizeLinear-Operation auf die Eingabedaten und die Gewichte. Danach folgt eine depthwise_conv2d, die pro Kanal eine eigene Faltung durchführt – typisch für MobileNet-ähnliche Architekturen. Das Ergebnis wird durch eine BatchNormalization stabilisiert und anschließend durch QuantizeLinear wieder in INT8 überführt. Solche Blocks wiederholen sich mehrfach im Modell, wobei sich Filteranzahl, Kernelgrößen und Skalierungswerte jeweils ändern.
+
+![vertiefte_Struktur](images/vertiefte_struktur.png)
 
 ## Dokumentation onnx-image-classification
 
@@ -39,11 +45,15 @@ Das Ergebnis zeigt, dass das Modell trotz niedriger Top-1-Confidence (unter 50�
 
 Die Einbindung des ONNX-Modells in eine Flask-Oberfläche verdeutlicht, wie maschinelles Lernen mit vortrainierten Modellen einfach lokal getestet werden kann. Die Nutzung von onnxruntime erlaubt dabei eine schnelle Inferenz ohne Abhängigkeit zu externen GPU-Diensten oder Frameworks wie TensorFlow oder PyTorch.
 
-
-
-
+![flask](images/flask.png)
 
 Zur Evaluierung der Klassifikationsleistung des EfficientNet-Lite4-Modells wurden drei verschiedene Bilder getestet: ein Zug (train.jpg), ein Auto (car.jpg) und ein Landschaftsbild (matterhorn.jpg). Die Klassifikation erfolgte über das lokal gestartete Flask-Webinterface mit dem ONNX-Modell efficientnet-lite4-11.onnx.
+
+![upload_train](images/upload_train.png)
+
+![upload_picture](images/upload_picture.png)
+
+![upload_matterhorn](images/upload_matterhorn.png)
 
 Das beste Ergebnis lieferte das Bild train.jpg, das mit hoher Wahrscheinlichkeit der Klasse
 „streetcar, tram, tramcar, trolley, trolley car“ zugeordnet wurde. Die Top-1-Prediction lag hier bei über 0.34, gefolgt von sinnvollen Alternativen wie „electric locomotive“.
