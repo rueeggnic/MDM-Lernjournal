@@ -34,7 +34,7 @@ Für das Dependency Management haben wir pip-tools verwendet. In der Datei requi
 ![WebUI](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal1-python/images/requirementsin.png)
 
 ### requirements.txt Inhalt (Teil-Auszug):
-
+<pre><code>
 blinker==1.9.0
     # via flask
 click==8.2.1
@@ -68,13 +68,14 @@ tqdm==4.67.1
     # via nltk
 werkzeug==3.1.3
     # via flask
+</code></pre>
 
 
 ## Deployment
-
+<pre><code>
 az webapp up --name lernjournal1-rueegnic --plan lernjournal1-plan --resource-group lernjournal1 --runtime "PYTHON:3.12" --sku F1 --logs
-
-
+</code></pre>
+<pre><code>
 az webapp up `
   --name lernjournal1-rueegnic `
   --plan lernjournal1-plan `
@@ -82,4 +83,5 @@ az webapp up `
   --runtime "PYTHON:3.12" `
   --sku F1 `
   --logs
+</code></pre>
 
