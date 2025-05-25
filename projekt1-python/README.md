@@ -5,9 +5,9 @@
 | | Bitte ausfüllen |
 | -------- | ------- |
 | Variante | Eigenes Projekt |
-| Datenherkunft | Format: csv, vorbereitete Datensätze die ich beziehen konnte |
+| Datenherkunft | Format: csv und JSON, vorbereitete Datensätze die ich beziehen konnte |
 | Datenherkunft | [URL](https://www.energiedashboard.admin.ch/strom/produktion) |
-| ML-Algorithmus | Deep Java Library |
+| ML-Algorithmus | nur begrenzt ML, da Datensatz sehr speziell war |
 | Repo URL | [URL](https://github.com/rueeggnic/mdmproject1) |
 
 ## Dokumentation
@@ -15,6 +15,8 @@
 ### Data Scraping
 
 Da ich mit Scraping begonnen habe, dann aber gemerkt habe, dass ich die Daten so wie ich sie brauche vom Energiedashboard, bzw. der dahinterliegenden Statistik entnehmen kann, brauchte ich für das eigentliche Projekt keinen Spider. Da dies aber ein wichtiger Bestandteil des Projektes war, wollte ich doch noch einen erstellen. Also habe ich unabhängig vom Projekt einen Beispielspider kreiiert, um das scraping auch noch zu vervollständigen. Der erstellte Scraper ist an das Vorlesungsbeispiel geknüpft.
+
+Die Daten konnte ich also von vom Energiedachboard beziehen. Entweder waren das csv Daten oder eine JSON API.
 
 ### Training
 
