@@ -21,6 +21,8 @@ Die Daten sind von einem vordefinierten Datensatz von Kaggle. Da gibt es die Rec
 
 ![Datensatz](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Datensatz.png)
 
+![Datensatz_Bilder](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Datensatz_Bilder.png)
+
 ### Training
 
 Das Training des Modells erfolgte in der Java-Klasse Training.java mithilfe der Deep Java Library (DJL). Dabei wurde ein neuronales Netz für die Klassifikation von Abfallarten trainiert (z. B. PET, Aluminium, Papier, Kehricht, Glasflaschen).
