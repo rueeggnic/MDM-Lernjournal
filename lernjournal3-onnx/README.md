@@ -15,7 +15,7 @@ Im Rahmen dieser Analyse wurde das quantisierte ONNX-Modell EfficientNet-Lite4-1
 
 Der erste untersuchte Layer ist Transpose. Dieser Layer bringt die Eingabedaten vom klassischen NHWC-Format (Height × Width × Channels) in das von ONNX bevorzugte NCHW-Format (Channels × Height × Width). Dieser Schritt ist notwendig, da viele Operationen in ONNX – wie z. B. Convolution – dieses Datenformat voraussetzen. Die Tensorform ändert sich dabei von (1 × 224 × 224 × 3) auf (1 × 3 × 224 × 224).
 
-Anschließend wurde der Layer QuantizeLinear betrachtet. Dieser Layer konvertiert Floating-Point-Werte in quantisierte Ganzzahlen, typischerweise INT8, um die Inferenz effizienter zu gestalten. Der Layer verwendet dafür einen Skalierungsfaktor (y_scale) und einen Offset (y_zero_point). In der analysierten Modellversion waren dies beispielhaft y_scale = 0.0078125 und y_zero_point = 127. Diese Transformation spart Speicher und Rechenleistung, was besonders bei mobilen Anwendungen entscheidend ist.
+Anschliessend wurde der Layer QuantizeLinear betrachtet. Dieser Layer konvertiert Floating-Point-Werte in quantisierte Ganzzahlen, typischerweise INT8, um die Inferenz effizienter zu gestalten. Der Layer verwendet dafür einen Skalierungsfaktor (y_scale) und einen Offset (y_zero_point). In der analysierten Modellversion waren dies beispielhaft y_scale = 0.0078125 und y_zero_point = 127. Diese Transformation spart Speicher und Rechenleistung, was besonders bei mobilen Anwendungen entscheidend ist.
 
 Ein weiterer zentraler Layer im Modell ist DequantizeLinear, der in der analysierten Struktur mehrfach vorkommt – unter anderem im Zusammenhang mit Depthwise-Convolution-Blöcken. Dieser Layer hebt die Quantisierung der Bias-Werte wieder auf, bevor sie in der eigentlichen Convolution verwendet werden. Die ursprünglichen, quantisierten Werte werden mithilfe eines Skalierungsfaktors und eines Offsets in Gleitkommazahlen umgerechnet. Das ist notwendig, da Bias-Werte und Filtergewichte häufig quantisiert gespeichert werden, für Berechnungen aber in höherer Präzision (z. B. FP32) benötigt werden. Insbesondere bei depthwise_conv2d handelt es sich um eine Form der Convolution, bei der jeder Eingangskanal separat verarbeitet wird – eine Technik, die in EfficientNet zur Reduktion des Rechenaufwands verwendet wird.
 
@@ -31,7 +31,7 @@ In einem frühen Abschnitt des EfficientNet-Lite4-Modells lässt sich ein typisc
 
 ## vertiefte Struktur
 
-Im Abschnitt blocks_0 beginnt die eigentliche vertiefte Struktur des Modells. Innerhalb dieses Blocks werden mehrere Operationen kombiniert: Zunächst erfolgt eine DequantizeLinear-Operation auf die Eingabedaten und die Gewichte. Danach folgt eine depthwise_conv2d, die pro Kanal eine eigene Faltung durchführt – typisch für MobileNet-ähnliche Architekturen. Das Ergebnis wird durch eine BatchNormalization stabilisiert und anschließend durch QuantizeLinear wieder in INT8 überführt. Solche Blocks wiederholen sich mehrfach im Modell, wobei sich Filteranzahl, Kernelgrößen und Skalierungswerte jeweils ändern.
+Im Abschnitt blocks_0 beginnt die eigentliche vertiefte Struktur des Modells. Innerhalb dieses Blocks werden mehrere Operationen kombiniert: Zunächst erfolgt eine DequantizeLinear-Operation auf die Eingabedaten und die Gewichte. Danach folgt eine depthwise_conv2d, die pro Kanal eine eigene Faltung durchführt – typisch für MobileNet-ähnliche Architekturen. Das Ergebnis wird durch eine BatchNormalization stabilisiert und anschliessend durch QuantizeLinear wieder in INT8 überführt. Solche Blocks wiederholen sich mehrfach im Modell, wobei sich Filteranzahl, Kernelgrössen und Skalierungswerte jeweils ändern.
 
 ![vertiefte_Struktur](images/vertiefte_struktur.png)
 
@@ -58,7 +58,7 @@ Zur Evaluierung der Klassifikationsleistung des EfficientNet-Lite4-Modells wurde
 Das beste Ergebnis lieferte das Bild train.jpg, das mit hoher Wahrscheinlichkeit der Klasse
 „streetcar, tram, tramcar, trolley, trolley car“ zugeordnet wurde. Die Top-1-Prediction lag hier bei über 0.34, gefolgt von sinnvollen Alternativen wie „electric locomotive“.
 
-Das Bild car.jpg wurde mit deutlich geringerer Sicherheit (Top-1: ~0.26) der Klasse „station wagon“ zugeordnet. Auch hier sind die Alternativklassen (z. B. „car wheel“, „sports car“) plausibel, allerdings zeigt sich eine breitere Streuung der Wahrscheinlichkeiten, was auf Unsicherheit im Modell schließen lässt.
+Das Bild car.jpg wurde mit deutlich geringerer Sicherheit (Top-1: ~0.26) der Klasse „station wagon“ zugeordnet. Auch hier sind die Alternativklassen (z. B. „car wheel“, „sports car“) plausibel, allerdings zeigt sich eine breitere Streuung der Wahrscheinlichkeiten, was auf Unsicherheit im Modell schliessen lässt.
 
 Das Landschaftsbild matterhorn.jpg wurde am schlechtesten erkannt. Die Top-1-Klasse war „lakeside, lakeshore“ mit nur ~0.013, dicht gefolgt von „valley“ und „cliff“. Dies deutet darauf hin, dass das Modell für natürliche Szenen ohne dominante Objekte weniger geeignet ist – was nachvollziehbar ist, da EfficientNet ursprünglich auf Objekterkennung in der ImageNet-Domäne trainiert wurde.
 
