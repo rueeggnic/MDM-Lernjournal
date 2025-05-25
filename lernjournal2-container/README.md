@@ -23,9 +23,9 @@ Ich habe die lokale Entwicklungsumgebung mit Docker installiert. Der Projektordn
 
 Lokale Entwicklungsumgebung mit Docker und Docker Compose installiert. Projekt enthält docker-compose.yml. Docker compose mit docker-compose up -- build gestartet. Das was über den Localhost Port 3000 erreichbar.
 
-![Dockercompose](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal2-container/images/docker_compose_up.png)
+![Dockercompose](images/docker_compose_up.png)
 
-![Dockercomposelocal](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal2-container/images/localhost_docker_compose.png)
+![Dockercomposelocal](images/localhost_docker_compose.png)
 
 ## Deployment ML-App
 
@@ -43,10 +43,10 @@ Lokale Entwicklungsumgebung mit Docker und Docker Compose installiert. Projekt e
 Schritte:
 
 Docker-Image lokal erstellt mit:
-docker build -t ruegenic/react-backend .
+<pre lang="md">docker build -t ruegenic/react-backend .</pre>
 
 Docker-Image gepusht auf Docker Hub:
-docker push ruegenic/react-backend
+<pre lang="md">docker push ruegenic/react-backend</pre>
 
 Ressourcengruppe erstellt:
 <pre lang="md">az group create --name rueeggnic-aci --location switzerlandnorth
@@ -62,9 +62,9 @@ az webapp config appsettings set --name rueeg-backend-app2 --resource-group ruee
 
 Container-Image gesetzt:
 az webapp config container set --name rueeg-backend-app2 --resource-group rueeggnic-aci --docker-custom-image-name ruegenic/react-backend:latest --docker-registry-server-url https://index.docker.io
- </pre>
+</pre>
 
 Anwendung aufrufbar unter (sofern erfolgreich gestartet):
 https://rueeg-backend-app2.azurewebsites.net
 
-![WebApp](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal2-container/images/webapp_azure.png)
+![WebApp](images/webapp_azure.png)
