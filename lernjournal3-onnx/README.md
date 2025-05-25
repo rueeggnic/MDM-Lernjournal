@@ -61,3 +61,36 @@ Das beste Ergebnis lieferte das Bild train.jpg, das mit hoher Wahrscheinlichkeit
 Das Bild car.jpg wurde mit deutlich geringerer Sicherheit (Top-1: ~0.26) der Klasse „station wagon“ zugeordnet. Auch hier sind die Alternativklassen (z. B. „car wheel“, „sports car“) plausibel, allerdings zeigt sich eine breitere Streuung der Wahrscheinlichkeiten, was auf Unsicherheit im Modell schließen lässt.
 
 Das Landschaftsbild matterhorn.jpg wurde am schlechtesten erkannt. Die Top-1-Klasse war „lakeside, lakeshore“ mit nur ~0.013, dicht gefolgt von „valley“ und „cliff“. Dies deutet darauf hin, dass das Modell für natürliche Szenen ohne dominante Objekte weniger geeignet ist – was nachvollziehbar ist, da EfficientNet ursprünglich auf Objekterkennung in der ImageNet-Domäne trainiert wurde.
+
+## Vergleich von drei Modellen
+
+Für den Modellvergleich wurden drei Varianten von EfficientNet-Lite4 verwendet, die im ONNX Model Zoo verfügbar sind. Das erste Modell war die ursprüngliche FP32-Version (efficientnet-lite4-11.onnx), die mit voller Gleitkomma-Genauigkeit arbeitet und als Referenzmodell dient. Als zweite Variante wurde das quantisierte QDQ-Modell (efficientnet-lite4-11-qdq.onnx) getestet, das durch das Einfügen von Dequantize- und Quantize-Operationen Effizienzgewinne bei nur minimalem Genauigkeitsverlust ermöglicht. Ergänzend dazu kam ein INT8-Modell (efficientnet-lite4-11-int8.onnx) zum Einsatz, das vollständig mit 8-Bit-Ganzzahlen arbeitet und besonders speicher- und rechenoptimiert ist. Alle drei Modelle wurden über dasselbe Flask-Webinterface getestet, indem das jeweils zu verwendende Modell über ein Dropdown-Menü ausgewählt wurde. Dadurch konnten direkte Vergleiche der Vorhersagen und der Konfidenzwerte für dieselben Eingabebilder durchgeführt werden.
+
+![verschiedene_modelle_dropdown](images/verschiedene_modelle_dropdown.png)
+
+Änderungen im Code:
+
+Index.html
+<pre><code>
+<label for="model">Select Model:</label>
+<select name="model">
+  <option value="fp32">EfficientNet-Lite4 (FP32)</option>
+  <option value="qdq">EfficientNet-Lite4 QDQ</option>
+  <option value="int8">EfficientNet-Lite4 INT8</option>
+</select>
+</code></pre>
+
+app.py:
+<pre><code>
+def analyze():
+    # Modellwahl
+    model_choice = request.form.get("model", "fp32")
+    model_paths = {
+        "fp32": "efficientnet-lite4-11.onnx",
+        "qdq": "efficientnet-lite4-11-qdq.onnx",
+        "int8": "efficientnet-lite4-11-int8.onnx"
+    }
+    ort_session = onnxruntime.InferenceSession(model_paths[model_choice])
+</code></pre>
+
+
