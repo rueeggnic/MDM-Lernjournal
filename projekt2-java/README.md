@@ -23,6 +23,14 @@ Die Daten sind von einem vordefinierten Datensatz von Kaggle. Da gibt es die Rec
 
 ### Training
 
+Das Training des Modells erfolgte in der Java-Klasse Training.java mithilfe der Deep Java Library (DJL). Dabei wurde ein neuronales Netz für die Klassifikation von Abfallarten trainiert (z. B. PET, Aluminium, Papier, Kehricht, Glasflaschen).
+
+Zu Beginn wurde die Eingabeform definiert und der Trainer mit der richtigen Input-Shape initialisiert. Anschliessend erfolgte das eigentliche Training mit der Methode EasyTrain.fit(), wobei die Trainings- und Validierungsdaten verwendet wurden.
+
+Während des Trainings wurden in der Konsole laufend Kennzahlen wie Loss und Accuracy pro Epoche ausgegeben. Zum Beispiel erreichte das Modell nach wenigen Prozent Trainingsfortschritt bereits eine Accuracy von ca. 57 % auf dem Validierungsdatensatz. Die Trainingsmetriken wurden durch den LoggingTrainingListener automatisch mitprotokolliert. Ich habe die Trainings mehrfach durchgeführt. Leider war ich da ein bisschen frustriert, trotz der klaren Abgrenzung der Klassen ist die Accuracy nie über 85% gekommen.
+
+Nach dem Training wurde das Modell gespeichert und steht anschliessend für die Inference und das Deployment zur Verfügung.
+
 ![Training](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Training.png)
 
 ### Inference / Serving
