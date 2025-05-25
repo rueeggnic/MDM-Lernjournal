@@ -17,16 +17,18 @@
 
 ### Daten
 
-* [ ] TODO
+![Datensatz](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Datensatz.png)
 
 ### Training
 
-* [ ] TODO
+![Training](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Training.png)
 
 ### Inference / Serving
 
-* [ ] TODO
+![dockerhub](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/dockerhub.png)
+
+![Deployment](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/Azure_deployment.png)
 
 ### Deployment
 
-* [ ] TODO
+![WebApp](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/projekt2-java/images/WebApp.png)
