@@ -17,7 +17,7 @@
 
 Ich habe die lokale Entwicklungsumgebung mit Docker installiert. Der Projektordner habe ich mit dem Dockerfile ergänzt. Dann habe ich lokal das Docker Image erstellt mit dem Tag rueegnic/react-backend. Dann habe ich das erstellte Image zu Docker Hub gepusht. Von Docker Hub habe ich es dann auf Azure deployed. Hier kommt auch ein erfolgreicher Deploy, aber ich glaube ich habe irgendwelche falsche Daten genommen. Die Seite wird zwar erreicht, in der Darstellung ist aber etwas falsch.
 
-![Dockerimage](https://raw.githubusercontent.com/rueeggnic/MDM-Lernjournal/main/lernjournal2-container/images/Docker_image.png)
+![Dockerimage](images/Docker_image.png)
 
 ### Dokumentation Docker-Compose Deployment
 
